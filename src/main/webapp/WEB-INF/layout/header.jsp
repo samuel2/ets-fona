@@ -22,7 +22,7 @@
                     Bonjour Visiteur!
                 </c:if>
 
-                <i class="caret"></i> 
+                <i class="caret"></i>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labeledby="dropdown-user">
                 <li>
