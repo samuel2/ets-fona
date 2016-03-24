@@ -50,6 +50,9 @@ public class Entree extends EntityObject
     @OneToMany(targetEntity = Lot.class, fetch = FetchType.EAGER, mappedBy = "entree")
     List<Lot> lots = new ArrayList<>();
 
+    @ManyToOne(targetEntity = Fournisseur.class, optional = false, fetch = FetchType.EAGER)
+    protected Fournisseur fournisseur;
+
     public Entree()
     {
     }
@@ -114,6 +117,16 @@ public class Entree extends EntityObject
         return lots;
     }
 
+    public Fournisseur getFournisseur()
+    {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur)
+    {
+        this.fournisseur = fournisseur;
+    }
+
     @Override
 
     public int hashCode()
@@ -129,28 +142,28 @@ public class Entree extends EntityObject
     @Override
     public boolean equals(Object obj)
     {
-        if (obj == null)
+        if(obj == null)
         {
             return false;
         }
-        if (getClass() != obj.getClass())
+        if(getClass() != obj.getClass())
         {
             return false;
         }
         final Entree other = (Entree) obj;
-        if (!Objects.equals(this.numero, other.numero))
+        if(!Objects.equals(this.numero, other.numero))
         {
             return false;
         }
-        if (!Objects.equals(this.dateEntree, other.dateEntree))
+        if(!Objects.equals(this.dateEntree, other.dateEntree))
         {
             return false;
         }
-        if (!Objects.equals(this.categorie, other.categorie))
+        if(!Objects.equals(this.categorie, other.categorie))
         {
             return false;
         }
-        if (!Objects.equals(this.user, other.user))
+        if(!Objects.equals(this.user, other.user))
         {
             return false;
         }
@@ -166,7 +179,7 @@ public class Entree extends EntityObject
         String numero = "ET-";
         numero += str + "-";
         String id;
-        if (this.id < 10)
+        if(this.id < 10)
         {
             id = "0" + this.id;
         }
