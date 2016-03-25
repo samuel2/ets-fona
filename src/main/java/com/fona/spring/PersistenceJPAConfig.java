@@ -25,8 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages
-                       =
-        {
+        = {
             "com.fona.persistence.dao"
         })
 public class PersistenceJPAConfig
@@ -37,8 +36,7 @@ public class PersistenceJPAConfig
     {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]
-        {
+        em.setPackagesToScan(new String[]{
             "com.fona.persistence.model"
         });
 
@@ -56,7 +54,7 @@ public class PersistenceJPAConfig
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/fona?useUnicode=yes&characterEncoding=UTF-8");
         dataSource.setUsername("root");
-        dataSource.setPassword("alice");
+        dataSource.setPassword("sando");
         return dataSource;
     }
 
@@ -82,7 +80,7 @@ public class PersistenceJPAConfig
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         // properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect",
-                               "org.hibernate.dialect.MySQL5Dialect");
+                "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
 
