@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -34,6 +35,7 @@ public abstract class Partenaire extends EntityObject
 
     protected String numeroContribuable;
 
+    @Valid
     protected Adresse adresse;
 
     public Partenaire()

@@ -21,6 +21,7 @@
              <c:choose>
                  <c:when test="${fn:containsIgnoreCase(url, 'service') || fn:containsIgnoreCase(url, 'agence')
                                  || fn:containsIgnoreCase(url, 'fourniture')
+                                 || fn:containsIgnoreCase(url, 'client')
                                  || fn:containsIgnoreCase(url, 'categorie') }">
                          class="panel-collapse collapse in"
                  </c:when>
@@ -65,6 +66,15 @@
                             </c:if>
                             href="<spring:url value="/fourniture/" />">
                             <spring:message code="fourniture.list" />
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            <c:if test="${fn:containsIgnoreCase(url, 'client')}">
+                                class="list-group-item active"
+                            </c:if>
+                            href="<spring:url value="/client/" />">
+                            <spring:message code="client.list" />
                         </a>
                     </li>
 

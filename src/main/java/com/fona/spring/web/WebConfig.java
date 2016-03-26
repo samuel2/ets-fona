@@ -30,10 +30,10 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages =
-{
-    "com.fona"
-})
+@ComponentScan(basePackages
+        = {
+            "com.fona"
+        })
 public class WebConfig extends WebMvcConfigurerAdapter
 {
 
@@ -97,9 +97,8 @@ public class WebConfig extends WebMvcConfigurerAdapter
     {
         final TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer
-                .setDefinitions(new String[]
-                        {
-                            "/WEB-INF/tiles/tiles-definitions.xml"
+                .setDefinitions(new String[]{
+                    "/WEB-INF/tiles/tiles-definitions.xml"
                 });
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
@@ -140,12 +139,12 @@ public class WebConfig extends WebMvcConfigurerAdapter
     public ReloadableResourceBundleMessageSource messageSource()
     {
         final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames(new String[]
-        {
+        messageSource.setBasenames(new String[]{
             "classpath:messages",
             "classpath:ValidationMessages",
             "WEB-INF/messages/agence/messages",
             "WEB-INF/messages/categorie/messages",
+            "WEB-INF/messages/client/messages",
             "WEB-INF/messages/default/messages",
             "WEB-INF/messages/departement/messages",
             "WEB-INF/messages/entree/messages",
