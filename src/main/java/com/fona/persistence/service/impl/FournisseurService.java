@@ -11,7 +11,7 @@ import com.fona.persistence.service.IFournisseurService;
 import com.fona.persistence.service.common.AbstractService;
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,25 @@ public class FournisseurService extends AbstractService<Fournisseur> implements 
     }
 
     @Override
+    public Fournisseur create(Fournisseur entity)
+    {
+        return fournisseurDao.save(entity);
+    }
+
+    @Override
+    public Fournisseur update(Fournisseur entity)
+    {
+        Fournisseur fournisseurToUpdate = fournisseurDao.findOne(entity.getId());
+        fournisseurToUpdate.setCode(entity.getCode());
+        fournisseurToUpdate.setNom(entity.getNom());
+        fournisseurToUpdate.setPrenom(entity.getPrenom());
+        fournisseurToUpdate.setCni(entity.getCni());
+        fournisseurToUpdate.setNumeroContribuable(entity.getNumeroContribuable());
+        fournisseurToUpdate.setAdresse(entity.getAdresse());
+        return fournisseurDao.save(fournisseurToUpdate);
+    }
+
+    @Override
     public List<Fournisseur> findFournisseurByCni(String cni)
     {
         return fournisseurDao.findFournisseurByCni(cni);
@@ -44,9 +63,9 @@ public class FournisseurService extends AbstractService<Fournisseur> implements 
     }
 
     @Override
-    public Page<Fournisseur> findPaginated(String code, String nom, String prenom, String cni, String numeroContribuable, Pageable pageable)
+    public Page<Fournisseur> findPaginated(String code, String nom, String prenom, String cni, String numeroContribuable, int page, Integer size)
     {
-        return fournisseurDao.findPaginated(code, nom, prenom, cni, numeroContribuable, pageable);
+        return fournisseurDao.findPaginated(code, nom, prenom, cni, numeroContribuable, new PageRequest(page, size));
     }
 
 }

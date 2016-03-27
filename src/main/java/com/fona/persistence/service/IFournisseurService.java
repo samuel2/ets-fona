@@ -9,7 +9,6 @@ import com.fona.persistence.IOperations;
 import com.fona.persistence.model.Fournisseur;
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -22,5 +21,5 @@ public interface IFournisseurService extends IOperations<Fournisseur>
 
     public List<Fournisseur> findFournisseurByCode(String code);
 
-    Page<Fournisseur> findPaginated(String code, String nom, String prenom, String cni, String numeroContribuable, Pageable pageable);
+    Page<Fournisseur> findPaginated(String code, String nom, String prenom, String cni, String numeroContribuable, int page, Integer size);
 }
