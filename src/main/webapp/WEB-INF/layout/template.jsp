@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <a class="thumbnail" href="<spring:url value="/"/>">
-                        <img alt="fona.png"  src="<c:url value="/resources/img/fona.png"/>"/>
+                        <img alt="fona.png" height="10" width="120" src="<c:url value="/resources/img/fona.png"/>"/>
                     </a>
                 </div>
                 <div class="col-lg-10">
