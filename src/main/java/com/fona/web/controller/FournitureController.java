@@ -53,6 +53,7 @@ public class FournitureController
     ILigneOperationService ligneOperationService;
 
     private static Logger logger = Logger.getLogger(FournitureController.class.getName());
+
     @Autowired
     ILotService lotService;
 
@@ -93,7 +94,8 @@ public class FournitureController
         final Fourniture fourniture = iFournitureService.findOne(id);
         Page<Lot> resultPage = lotService.search(id, dateDebut, dateFin, quantite, page, size);
         List<Lot> lots = new ArrayList<>();
-        for (Lot lot : resultPage.getContent()) {
+        for(Lot lot : resultPage.getContent())
+        {
             lot.setEntree(null);
             lot.setFourniture(null);
             lots.add(lot);
@@ -118,19 +120,22 @@ public class FournitureController
         Date dateDebut = parsedDateFrom(dateDebutString, "1970/01/01", dateFormatter);
         Date dateFin = parsedDateFrom(dateFinString, "2019/12/31", dateFormatter);
         final Fourniture fourniture = iFournitureService.findOne(id);
-        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]{
-            dateDebut.toString(), dateFin.toString()
+        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]
+           {
+               dateDebut.toString(), dateFin.toString()
         });
         dateFin.setYear(1000);
         Page<LigneOperation> resultPage = ligneOperationService.findByFourniture(id, "Audit", dateDebut, dateFin, page, size);
         List<LigneOperation> ligneOperations = new ArrayList<>();
-        for (LigneOperation ligneOperation : resultPage.getContent()) {
+        for(LigneOperation ligneOperation : resultPage.getContent())
+        {
             ligneOperation.getOperation().setLigneOperations(null);
             ligneOperation.setFourniture(null);
             ligneOperations.add(ligneOperation);
         }
         logger.log(Level.WARNING, "nombre de resultats = {0}", ligneOperations.size());
-        for (LigneOperation ligneOperation : ligneOperations) {
+        for(LigneOperation ligneOperation : ligneOperations)
+        {
             logger.log(Level.INFO, ligneOperation.toString());
         }
         model.addAttribute("ligneOperations", ligneOperations);
@@ -153,18 +158,21 @@ public class FournitureController
         Date dateDebutPerte = parsedDateFrom(dateDebutPerteString, "1970/01/01", dateFormatter);
         Date dateFinPerte = parsedDateFrom(dateFinPerteString, "2999/12/31", dateFormatter);
         final Fourniture fourniture = iFournitureService.findOne(id);
-        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]{
-            dateDebutPerte.toString(), dateFinPerte.toString()
+        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]
+           {
+               dateDebutPerte.toString(), dateFinPerte.toString()
         });
         Page<LigneOperation> resultPage = ligneOperationService.findByFourniture(id, "Perte", dateDebutPerte, dateFinPerte, page, size);
         List<LigneOperation> lignePertes = new ArrayList<>();
-        for (LigneOperation ligneOperation : resultPage.getContent()) {
+        for(LigneOperation ligneOperation : resultPage.getContent())
+        {
             ligneOperation.getOperation().setLigneOperations(null);
             ligneOperation.setFourniture(null);
             lignePertes.add(ligneOperation);
         }
         logger.log(Level.WARNING, "nombre de resultats = {0}", lignePertes.size());
-        for (LigneOperation ligneOperation : lignePertes) {
+        for(LigneOperation ligneOperation : lignePertes)
+        {
             logger.log(Level.INFO, ligneOperation.toString());
         }
         model.addAttribute("lignePertes", lignePertes);
@@ -187,19 +195,22 @@ public class FournitureController
         Date dateDebutSortie = parsedDateFrom(dateDebutSortieString, "1970/01/01", dateFormatter);
         Date dateFinSortie = parsedDateFrom(dateFinSortieString, "2999/12/31", dateFormatter);
         final Fourniture fourniture = iFournitureService.findOne(id);
-        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]{
-            dateDebutSortie.toString(), dateFinSortie.toString()
+        logger.log(Level.INFO, "Debut = {0} Fin = {1}", new Object[]
+           {
+               dateDebutSortie.toString(), dateFinSortie.toString()
         });
         dateFinSortie.setYear(1000);
         Page<LigneOperation> resultPage = ligneOperationService.findByFourniture(id, "Sortie", dateDebutSortie, dateFinSortie, pageSortie, sizeSortie);
         List<LigneOperation> ligneSorties = new ArrayList<>();
-        for (LigneOperation ligneOperation : resultPage.getContent()) {
+        for(LigneOperation ligneOperation : resultPage.getContent())
+        {
             ligneOperation.getOperation().setLigneOperations(null);
             ligneOperation.setFourniture(null);
             ligneSorties.add(ligneOperation);
         }
         logger.log(Level.WARNING, "nombre de resultats = {0}", ligneSorties.size());
-        for (LigneOperation ligneOperation : ligneSorties) {
+        for(LigneOperation ligneOperation : ligneSorties)
+        {
             logger.log(Level.INFO, ligneOperation.toString());
         }
         model.addAttribute("ligneSorties", ligneSorties);
@@ -240,8 +251,8 @@ public class FournitureController
     {
 
         final Long categorieID = (webRequest.getParameter("querycategorie") != null && !webRequest.getParameter("querycategorie").equals(""))
-                ? Long.valueOf(webRequest.getParameter("querycategorie"))
-                : -1;
+                                 ? Long.valueOf(webRequest.getParameter("querycategorie"))
+                                 : -1;
         final String designation = webRequest.getParameter("querydesignation") != null ? webRequest.getParameter("querydesignation") : "";
         final String reference = webRequest.getParameter("queryreference") != null ? webRequest.getParameter("queryreference") : "";
         final Integer nombrePage = webRequest.getParameter("page") != null ? Integer.valueOf(webRequest.getParameter("page")) : 0;
@@ -265,14 +276,16 @@ public class FournitureController
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createAction(@Valid final Fourniture fourniture, final ModelMap model,
-            final BindingResult result, final RedirectAttributes redirectAttributes)
+                               final BindingResult result, final RedirectAttributes redirectAttributes)
     {
-        if (result.hasErrors()) {
+        if(result.hasErrors())
+        {
             model.addAttribute("error", "error");
             model.addAttribute("fourniture", fourniture);
             return "fourniture/new";
         }
-        else {
+        else
+        {
             redirectAttributes.addFlashAttribute("info", "alert.success.new");
             iFournitureService.create(fourniture);
             return "redirect:/fourniture/" + fourniture.getId() + "/show";
@@ -281,15 +294,17 @@ public class FournitureController
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String updateAction(@Valid final Fourniture fourniture, final ModelMap model,
-            @PathVariable("id") final Long id,
-            final BindingResult result, final RedirectAttributes redirectAttributes)
+                               @PathVariable("id") final Long id,
+                               final BindingResult result, final RedirectAttributes redirectAttributes)
     {
 
-        if (result.hasErrors()) {
+        if(result.hasErrors())
+        {
             model.addAttribute("error", "error");
             return "fourniture/edit";
         }
-        else {
+        else
+        {
             redirectAttributes.addFlashAttribute("info", "alert.success.new");
             iFournitureService.update(fourniture);
             return "redirect:/fourniture/" + fourniture.getId() + "/show";
@@ -301,7 +316,8 @@ public class FournitureController
     {
         Map<Long, String> results = new HashMap<>();
         final List<Categorie> categories = iCategorieService.findAll();
-        for (Categorie category : categories) {
+        for(Categorie category : categories)
+        {
             results.put(category.getId(), category.getIntitule());
         }
         return results;
@@ -320,14 +336,18 @@ public class FournitureController
     {
         Date result = new Date();
         SimpleDateFormat dateFormatter = dateFormat;
-        try {
+        try
+        {
             result = dateFormatter.parse(dateString);
         }
-        catch (ParseException ex) {
-            try {
+        catch(ParseException ex)
+        {
+            try
+            {
                 result = dateFormatter.parse(dateLimite);
             }
-            catch (ParseException ex1) {
+            catch(ParseException ex1)
+            {
                 Logger.getLogger(FournitureController.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }

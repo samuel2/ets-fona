@@ -24,6 +24,8 @@ public interface IEntreeService extends IOperations<Entree>
 
     public List<Entree> findByUser(User user);
 
+    public Page<Entree> findByFournisseur(long id, int page, Integer size);
+
     Page<Entree> findPaginated(long categorieID, Date dateOperation,
-            String designation, int page, Integer size);
+                               String designation, int page, Integer size);
 }

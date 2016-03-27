@@ -69,7 +69,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
         entity.setUser(userConnected);
         entity.setCategorie(categorieDao.getCategorie(entity.getCategorie().getIntitule()));
         final Entree entree = entreeDao.save(entity);
-        for (Lot lot : entity.getLots())
+        for(Lot lot : entity.getLots())
         {
             Fourniture fourniture = fournitureDao.findOne(lot.getFourniture().getId());
             lot.setDateEntree(new Date());
@@ -79,7 +79,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
             lotDao.save(lot);
 
             //Ajout de laquantite manquante
-            if (entree.getLigneAuditId() != null)
+            if(entree.getLigneAuditId() != null)
             {
                 fourniture.setManque(fourniture.getManque() - lot.getQuantite());
                 fournitureDao.save(fourniture);
@@ -98,13 +98,13 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
         List<Lot> lotsToRemove = lotDao.findByEntreeIdForEdit(entity.getId());
 
         //On retire les anciennes quantités des lots
-        for (Lot lot : lotsToRemove)
+        for(Lot lot : lotsToRemove)
         {
             fourniture = lot.getFourniture();
             fourniture.setQuantite(fourniture.getQuantite() - lot.getQuantite());
 
             //Retrait de la quantité manquante
-            if (entity.getLigneAuditId() != null)
+            if(entity.getLigneAuditId() != null)
             {
                 fourniture.setManque(fourniture.getManque() + lot.getQuantite());
             }
@@ -120,7 +120,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
         entreeToUpdate.setCategorie(categorieDao.getCategorie(entity.getCategorie().getIntitule()));
         final Entree entree = entreeDao.save(entreeToUpdate);
 
-        for (Lot lot : entity.getLots())
+        for(Lot lot : entity.getLots())
         {
             fourniture = fournitureDao.findOne(lot.getFourniture().getId());
             lot.setDateEntree(new Date());
@@ -129,7 +129,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
             lot.setFourniture(fourniture);
 
             //Ajout de laquantite manquante
-            if (entree.getLigneAuditId() != null)
+            if(entree.getLigneAuditId() != null)
             {
                 fourniture.setManque(fourniture.getManque() - lot.getQuantite());
                 fournitureDao.save(fourniture);
@@ -145,7 +145,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
     public int isInside(List<Lot> lots, Lot lot)
     {
         int i = 0;
-        for (; i < lots.size() && lots.get(i).getId().equals(lot.getId()); i++)
+        for(; i < lots.size() && lots.get(i).getId().equals(lot.getId()); i++)
         {
         }
 
@@ -167,7 +167,7 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
     @Override
     public Page<Entree> findPaginated(long categorieID, Date dateOperation, String designation, int page, Integer size)
     {
-        if (categorieID == -1)
+        if(categorieID == -1)
         {
             return entreeDao.findPaginated(dateOperation, '%' + designation + '%', new PageRequest(page, size));
         }
@@ -175,5 +175,11 @@ public class EntreeService extends AbstractService<Entree> implements IEntreeSer
         {
             return entreeDao.findPaginated(categorieID, dateOperation, '%' + designation + '%', new PageRequest(page, size));
         }
+    }
+
+    @Override
+    public Page<Entree> findByFournisseur(long id, int page, Integer size)
+    {
+        return entreeDao.findByFournisseur(id, new PageRequest(page, size));
     }
 }
