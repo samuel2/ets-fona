@@ -51,6 +51,12 @@ public class FournisseurService extends AbstractService<Fournisseur> implements 
     }
 
     @Override
+    public void delete(Fournisseur entity)
+    {
+        super.delete(entity);
+    }
+
+    @Override
     public List<Fournisseur> findFournisseurByCni(String cni)
     {
         return fournisseurDao.findFournisseurByCni(cni);
