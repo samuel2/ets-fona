@@ -38,6 +38,7 @@
                             <th> <span class="btn"> <spring:message code="fourniture.designation" /> </span> </th>
                             <th> <span class="btn"> <spring:message code="fourniture.categorie" /> </span> </th>
                             <th> <span class="btn"> <spring:message code="fourniture.quantite" /> </span> </th>
+                            <th> <span class="btn"> <spring:message code="fourniture.dateDePeremption" /> </span> </th>
                             <th> <span class="btn"> <spring:message code="action.titre" /> </span> </th>
                         </tr>
                     </thead>
@@ -47,7 +48,7 @@
 
                         <c:if test="${fournitures.size() eq 0}">
                             <tr>
-                                <td class="text-center label-danger" colspan="5">
+                                <td class="text-center label-danger" colspan="6">
                                     <spring:message code="empty.data" />
                                 </td>
                             </tr>
@@ -95,6 +96,7 @@
                                 <td>${fourniture.designation}</td>
                                 <td>${fourniture.categorie.intitule}</td>
                                 <td>${fourniture.quantite}</td>
+                                <td>${fourniture.dateDePeremption}</td>
                                 <td>
                                     <a href="${show}" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-open"></span>
@@ -114,6 +116,7 @@
                                 <td>${fourniture.designation}</td>
                                 <td>${fourniture.categorie.intitule}</td>
                                 <td>${fourniture.quantite}</td>
+                                <td>${fourniture.dateDePeremption}</td>
                                 <td>
                                     <a href="${show}" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-open"></span>

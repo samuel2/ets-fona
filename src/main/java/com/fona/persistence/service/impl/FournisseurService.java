@@ -10,6 +10,7 @@ import com.fona.persistence.model.Fournisseur;
 import com.fona.persistence.service.IFournisseurService;
 import com.fona.persistence.service.common.AbstractService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
 public class FournisseurService extends AbstractService<Fournisseur> implements IFournisseurService
 {
 
+    @Autowired
     private IFournisseurDao fournisseurDao;
 
     @Override
@@ -71,7 +73,7 @@ public class FournisseurService extends AbstractService<Fournisseur> implements 
     @Override
     public Page<Fournisseur> findPaginated(String code, String nom, String prenom, String cni, String numeroContribuable, int page, Integer size)
     {
-        return fournisseurDao.findPaginated(code, nom, prenom, cni, numeroContribuable, new PageRequest(page, size));
+        return fournisseurDao.findPaginated('%' + code + '%', '%' + nom + '%', '%' + prenom + '%', '%' + cni + '%', '%' + numeroContribuable + '%', new PageRequest(page, size));
     }
 
 }

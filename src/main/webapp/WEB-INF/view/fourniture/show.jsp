@@ -52,6 +52,11 @@
                                 <spring:message code="fourniture.seuil" />
                             </th>
                             <td>${fourniture.seuil}</td>
+
+                            <th>
+                                <spring:message code="fourniture.dateDePeremption" />
+                            </th>
+                            <td>${fourniture.dateDePeremption}</td>
                         </tr>
                     </tbody>
                 </table>

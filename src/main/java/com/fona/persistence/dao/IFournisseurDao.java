@@ -27,17 +27,6 @@ public interface IFournisseurDao extends JpaRepository<Fournisseur, Long>, JpaSp
     @Query("SELECT f FROM Fournisseur f WHERE f.code LIKE :code")
     public List<Fournisseur> findFournisseurByCode(@PathVariable("code") String code);
 
-    @Query("SELECT f FROM Fournisseur f WHERE f.code LIKE :code AND "
-           + "f.nom LIKE :nom AND "
-           + "f.prenom LIKE :prenom AND "
-           + "f.cni LIKE :cni AND "
-           + "f.numeroContribuable LIKE :numeroContribuable")
-    Page<Fournisseur> findPaginated(
-            @PathVariable("code") String code,
-            @PathVariable("nom") String nom,
-            @PathVariable("prenom") String prenom,
-            @PathVariable("cni") String cni,
-            @PathVariable("numeroContribuable") String numeroContribuable,
-            Pageable pageable
-    );
+    @Query("SELECT f FROM Fournisseur f WHERE f.code LIKE :code AND f.nom LIKE :nom AND f.prenom LIKE :prenom AND f.cni LIKE :cni AND f.numeroContribuable LIKE :numeroContribuable")
+    Page<Fournisseur> findPaginated(@PathVariable("code") String code, @PathVariable("nom") String nom, @PathVariable("prenom") String prenom, @PathVariable("cni") String cni, @PathVariable("numeroContribuable") String numeroContribuable, Pageable pageable);
 }

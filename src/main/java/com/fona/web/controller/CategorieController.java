@@ -77,7 +77,7 @@ public class CategorieController
         final String intitule = webRequest.getParameter("intitule") != null ? webRequest.getParameter("intitule") : "";
 
         final Integer page = webRequest.getParameter("page") != null ? Integer.valueOf(webRequest.getParameter("page")) : 0;
-        final Integer size = webRequest.getParameter("size") != null ? Integer.valueOf(webRequest.getParameter("size")) : 55;
+        final Integer size = webRequest.getParameter("size") != null ? Integer.valueOf(webRequest.getParameter("size")) : 5;
 
         final Page<Categorie> resultPage = iCategorieService.findPaginated(intitule, page, size);
 
@@ -93,15 +93,17 @@ public class CategorieController
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createAction(@Valid final Categorie categorie, final ModelMap model,
-            final BindingResult result, final RedirectAttributes redirectAttributes)
+                               final BindingResult result, final RedirectAttributes redirectAttributes)
     {
-        if (result.hasErrors()) {
+        if(result.hasErrors())
+        {
             Logger.getLogger(CategorieController.class.getName()).log(Level.INFO, "il y'a eu erreur");
             model.addAttribute("error", "error");
             model.addAttribute("categorie", categorie);
             return "categorie/new";
         }
-        else {
+        else
+        {
             redirectAttributes.addFlashAttribute("info", "alert.success.new");
             iCategorieService.create(categorie);
             return "redirect:/categorie/" + categorie.getId() + "/show";
@@ -110,15 +112,17 @@ public class CategorieController
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String updateAction(@Valid final Categorie categorie, @PathVariable("id") final Long id,
-            final ModelMap model,
-            final BindingResult result, final RedirectAttributes redirectAttributes)
+                               final ModelMap model,
+                               final BindingResult result, final RedirectAttributes redirectAttributes)
     {
 
-        if (result.hasErrors()) {
+        if(result.hasErrors())
+        {
             model.addAttribute("error", "error");
             return "categorie/edit";
         }
-        else {
+        else
+        {
             redirectAttributes.addFlashAttribute("info", "alert.success.new");
             iCategorieService.update(categorie);
             return "redirect:/categorie/" + categorie.getId() + "/show";

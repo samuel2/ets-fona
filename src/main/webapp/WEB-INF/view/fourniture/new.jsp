@@ -20,57 +20,72 @@
             <spring:url value="/fourniture/" var="fournitures" />
 
             <div class="row">
-                <div class="col-md-6 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <form:form  method="post" commandName="fourniture" action="${fourniture_create}">
                         <div class="row">
-                            <div class="form-group">
-                                <form:label path="" for="reference">
-                                    <spring:message code="fourniture.reference" />
-                                </form:label>
-                                <form:input id="reference" path="reference" cssClass="form-control" />
-                                <form:errors path="reference" cssClass="text-danger" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <form:label path="" for="reference">
+                                        <spring:message code="fourniture.reference" />
+                                    </form:label>
+                                    <form:input id="reference" path="reference" cssClass="form-control" />
+                                    <form:errors path="reference" cssClass="text-danger" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <form:label path="" for="designation">
+                                        <spring:message code="fourniture.designation" />
+                                    </form:label>
+                                    <form:input id="designation" path="designation" cssClass="form-control" />
+                                    <form:errors path="designation" cssClass="text-danger" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <form:label path="" for="seuil">
+                                        <spring:message code="fourniture.seuil" />
+                                    </form:label>
+                                    <form:input id="seuil" path="seuil" cssClass="form-control" />
+                                    <form:errors path="seuil" cssClass="text-danger" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <form:label for="date" path="">
+                                        <spring:message code="fourniture.dateDePeremption" />
+                                    </form:label>
+                                    <form:input id="date" path="dateDePeremption" cssClass="form-control input-sm" />
+                                    <form:errors path="dateDePeremption" cssClass="text-danger" />
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <form:label path="" for="designation">
-                                    <spring:message code="fourniture.designation" />
-                                </form:label>
-                                <form:input id="designation" path="designation" cssClass="form-control" />
-                                <form:errors path="designation" cssClass="text-danger" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <form:label path="" for="cat">
+                                        <spring:message code="fourniture.categorie" />
+                                    </form:label>
+                                    <form:select id="cat" path="categorie.id" cssClass="form-control" >
+                                        <form:options items="${categories}" />
+                                    </form:select>
+                                    <form:errors path="categorie.id" cssClass="text-danger" />
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <form:label path="" for="seuil">
-                                    <spring:message code="fourniture.seuil" />
-                                </form:label>
-                                <form:input id="seuil" path="seuil" cssClass="form-control" />
-                                <form:errors path="seuil" cssClass="text-danger" />
+                            <hr />
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-save"></span>
+                                    <spring:message code="action.enregistrer" />
+                                </button>
+                                <a href="${fournitures}" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                    <spring:message code="fourniture.list" />
+                                </a>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <form:label path="" for="cat">
-                                    <spring:message code="fourniture.categorie" />
-                                </form:label>
-                                <form:select id="cat" path="categorie.id" cssClass="form-control" >
-                                    <form:options items="${categories}" />
-                                </form:select>
-                                <form:errors path="categorie" cssClass="text-danger" />
-                            </div>
-                        </div>
-                        <hr />
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-save"></span>
-                                <spring:message code="action.enregistrer" />
-                            </button>
-                            <a href="${fournitures}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-list"></span>
-                                <spring:message code="fourniture.list" />
-                            </a>
                         </div>
                     </form:form>
                 </div>

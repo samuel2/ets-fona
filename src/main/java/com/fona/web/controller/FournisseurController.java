@@ -32,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
         {
             "ROLE_USER", "ROLE_ADMIN"
         })
-@RequestMapping("fournisseur")
+@RequestMapping("/fournisseur")
 public class FournisseurController
 {
 
@@ -61,6 +61,7 @@ public class FournisseurController
     @RequestMapping(method = RequestMethod.GET)
     public String indexAction(final ModelMap model, final WebRequest webRequest)
     {
+        System.out.println("Debut liste fournisseur dans le controller...");
         final Integer page = webRequest.getParameter("page") != null ? Integer.valueOf(webRequest.getParameter("page")) : 0;
         final Integer size = webRequest.getParameter("size") != null ? Integer.valueOf(webRequest.getParameter("size")) : 55;
 
@@ -69,19 +70,28 @@ public class FournisseurController
         final String cni = webRequest.getParameter("querycni") != null ? webRequest.getParameter("querycni") : "";
         final String prenom = webRequest.getParameter("queryprenom") != null ? webRequest.getParameter("queryprenom") : "";
         final String numeroContribuable = webRequest.getParameter("querynumeroContribuable") != null ? webRequest.getParameter("querynumeroContribuable") : "";
-        final Page<Fournisseur> resultpPage = fournisseurService.findPaginated(code, nom, prenom, cni, numeroContribuable, page, size);
+
+        System.out.println("Liste des fournisseurs dans le controlleur...");
+        final Page<Fournisseur> resultpPage = fournisseurService.findPaginated(page, size);
+
+        System.out.println("Une instance de fournisseur dans le controlleur...");
         Fournisseur fournisseur = new Fournisseur();
+        System.out.println("Instance cree correctement...");
+
+        System.out.println("Construction des objets a afficher...");
         fournisseur.setCode(code);
         fournisseur.setNom(nom);
         fournisseur.setPrenom(prenom);
         fournisseur.setCni(cni);
         fournisseur.setNumeroContribuable(numeroContribuable);
+
+        System.out.println("Ajout des elements dans la vue...");
         model.addAttribute("page", page);
         model.addAttribute("fournisseur", fournisseur);
         model.addAttribute("Totalpage", resultpPage.getTotalPages());
         model.addAttribute("size", size);
         model.addAttribute("fournisseurs", resultpPage.getContent());
-
+        System.out.println("Reurn de la vue cree...");
         return "fournisseur/index";
     }
 

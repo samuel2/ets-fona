@@ -6,10 +6,12 @@
 package com.fona.web.controller;
 
 import com.fona.persistence.model.Categorie;
+import com.fona.persistence.model.Fournisseur;
 import com.fona.persistence.model.Fourniture;
 import com.fona.persistence.model.LigneOperation;
 import com.fona.persistence.model.Lot;
 import com.fona.persistence.service.ICategorieService;
+import com.fona.persistence.service.IFournisseurService;
 import com.fona.persistence.service.IFournitureService;
 import com.fona.persistence.service.ILigneOperationService;
 import com.fona.persistence.service.ILotService;
@@ -62,6 +64,9 @@ public class FournitureController
 
     @Autowired
     private ICategorieService iCategorieService;
+
+    @Autowired
+    private IFournisseurService fournisseurService;
 
     @RequestMapping(value = "/{id}/show", method = RequestMethod.GET)
     public String showAction(@PathVariable("id") final Long id, final ModelMap model, WebRequest webRequest)
@@ -250,6 +255,7 @@ public class FournitureController
     public String indexAction(final ModelMap model, final WebRequest webRequest)
     {
 
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         final Long categorieID = (webRequest.getParameter("querycategorie") != null && !webRequest.getParameter("querycategorie").equals(""))
                                  ? Long.valueOf(webRequest.getParameter("querycategorie"))
                                  : -1;
@@ -257,12 +263,24 @@ public class FournitureController
         final String reference = webRequest.getParameter("queryreference") != null ? webRequest.getParameter("queryreference") : "";
         final Integer nombrePage = webRequest.getParameter("page") != null ? Integer.valueOf(webRequest.getParameter("page")) : 0;
         final Integer size = webRequest.getParameter("size") != null ? Integer.valueOf(webRequest.getParameter("size")) : 5;
+        final String datePeremption = webRequest.getParameter("querydatedeperemption") != null ? webRequest.getParameter("querydatedeperemption") : "31/12/2999";
+        final Date dateDuJour = new Date();
+        Date dateDePeremption = new Date();
+        try
+        {
+            dateDePeremption = dateFormatter.parse(datePeremption);
+        }
+        catch(Exception e)
+        {
+            Logger.getLogger(FournitureController.class.getName()).log(Level.SEVERE, null, e);
+        }
 
-        final Page<Fourniture> resultPage = iFournitureService.findPaginated(categorieID, designation, reference, nombrePage, size);
+        final Page<Fourniture> resultPage = iFournitureService.findPaginated(categorieID, designation, reference, dateDePeremption, nombrePage, size);
 
         final Fourniture fourniture = new Fourniture();
         fourniture.setReference(reference);
         fourniture.setDesignation(designation);
+        fourniture.setDateDePeremption(dateDePeremption);
         Categorie ct = new Categorie();
         ct.setId(categorieID);
         fourniture.setCategorie(ct);
@@ -271,6 +289,7 @@ public class FournitureController
         model.addAttribute("Totalpage", resultPage.getTotalPages());
         model.addAttribute("size", size);
         model.addAttribute("fournitures", resultPage.getContent());
+        model.addAttribute("dateDuJour", dateDuJour);
         return "fourniture/index";
     }
 
@@ -319,6 +338,18 @@ public class FournitureController
         for(Categorie category : categories)
         {
             results.put(category.getId(), category.getIntitule());
+        }
+        return results;
+    }
+
+    @ModelAttribute("fournisseurs")
+    public Map<Long, String> getFournisseur()
+    {
+        Map<Long, String> results = new HashMap<>();
+        final List<Fournisseur> fournisseurs = fournisseurService.findAll();
+        for(Fournisseur fournisseur : fournisseurs)
+        {
+            results.put(fournisseur.getId(), fournisseur.getNom());
         }
         return results;
     }
