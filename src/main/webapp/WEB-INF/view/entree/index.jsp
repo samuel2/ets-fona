@@ -62,169 +62,347 @@
                     </table>
 
                     <div class="row">
-                        <div>
-                            <a href="${entreeNew}" class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-new-window"></span>
-                                <spring:message code="action.nouveau" />
-                            </a>
+                        <div class="col-md-12">
+                            <div>
+                                <div class="dropdown pull-left ">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenus" data-toggle="dropdown" aria-expanded="true">
+                                        <spring:message code="action.nouveau" />
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
+                                        <li>
+                                            <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
+                                            <a href="${newMatLatex}">
+                                                <span class="glyphicon glyphicon-camera"></span>
+                                                <spring:message code="matLatex.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/fournisseur/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                            <a href="${newMatBiochimie}">
+                                                <span class="glyphicon glyphicon-book"></span>
+                                                <spring:message code="matBiochimie.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
+                                            <a href="${newMatImmunologie}" >
+                                                <span class="glyphicon glyphicon-sound-stereo"></span>
+                                                <spring:message code="matImmunologie.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/appareillage/new" var="newMatAppareillage" htmlEscape="true" />
+                                            <a href="${newMatAppareillage}" >
+                                                <span class="glyphicon glyphicon-sound-stereo"></span>
+                                                <spring:message code="matAppareillage.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/colorants/new" var="newMatColorant" htmlEscape="true" />
+                                            <a href="${newMatColorant}">
+                                                <span class="glyphicon glyphicon-book"></span>
+                                                <spring:message code="matColorant.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/consommables/new" var="newMatConsommable" htmlEscape="true" />
+                                            <a href="${newMatConsommable}">
+                                                <span class="glyphicon glyphicon-camera"></span>
+                                                <spring:message code="matConsommable.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/bandelette/new" var="newMatTestDiagnostique" htmlEscape="true" />
+                                            <a href="${newMatTestDiagnostique}" >
+                                                <span class="glyphicon glyphicon-sound-stereo"></span>
+                                                <spring:message code="matTestDiagnostique.new" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="pull-right">
+                            <ul class="pager">
+
+                                <li><a href="?query=${query}&page=0&size=${size}" class ="btn btn-sm disabled">
+                                        <span class="glyphicon glyphicon-fast-backward"></span>
+                                    </a></li>
+                                <li><a href="?query=${query}&page=${page-1}&size=${size}"class ="btn btn-sm disabled">
+                                        <span class="glyphicon glyphicon-backward"></span>
+                                    </a></li>
+                                <li><input type="text" class="pager_detail text-center" readonly value="0/0"/></li>
+                                <li><a href="?query=${query}&page=${page+1}&size=${size}" class ="btn btn-sm disabled">
+                                        <span class="glyphicon glyphicon-forward"></span>
+                                    </a></li>
+                                <li><a href="?query=${query}&page=${Totalpage-1}&size=${size}" class ="btn btn-sm disabled">
+                                        <span class="glyphicon glyphicon-fast-forward"></span>
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </c:if>
+
+                <c:if test="${entrees.size() ne 0}">
+                    <c:forEach items="${entrees}" var="entree">
+                        <tr>
+                            <td>${entree.numero}</td>
+                            <td>${entree.dateEntree}</td>
+                            <td>${entree.categorie.intitule}</td>
+                            <td>${entree.user.user.nom}</td>
+                            <td>
+                                <spring:url value="/entree/${entree.id}/edit" htmlEscape="true" var="entree_edit" />
+                                <a href="${entree_edit}" class="btn btn-primary btn-warning">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    <spring:message code="action.modifier" />
+                                </a>
+                                &nbsp; &nbsp;
+                                <spring:url value="/entree/${entree.id}/show" htmlEscape="true" var="entree_show" />
+                                <a href="${entree_show}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-open"></span>
+                                    <spring:message code="action.detail" />
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                    </tbody>
+                    </table>
+                    <div>
+
+                        <div class="dropdown pull-left ">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenus" data-toggle="dropdown" aria-expanded="true">
+                                <spring:message code="action.nouveau" />
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
+                                <li>
+                                    <spring:url value="/entree/partial/newFournisseur" var="newMatLatex" htmlEscape="true" />
+                                    <a href="${newMatLatex}">
+                                        <span class="glyphicon glyphicon-camera"></span>
+                                        <spring:message code="matLatex.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/fournisseur/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                    <a href="${newMatBiochimie}">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        <spring:message code="matBiochimie.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
+                                    <a href="${newMatImmunologie}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matImmunologie.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/appareillage/new" var="newMatAppareillage" htmlEscape="true" />
+                                    <a href="${newMatAppareillage}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matAppareillage.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/colorants/new" var="newMatColorant" htmlEscape="true" />
+                                    <a href="${newMatColorant}">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        <spring:message code="matColorant.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/consommables/new" var="newMatConsommable" htmlEscape="true" />
+                                    <a href="${newMatConsommable}">
+                                        <span class="glyphicon glyphicon-camera"></span>
+                                        <spring:message code="matConsommable.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/bandelette/new" var="newMatTestDiagnostique" htmlEscape="true" />
+                                    <a href="${newMatTestDiagnostique}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matTestDiagnostique.new" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right">
+                            <ul class="pager">
+
+                                <li>
+                                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=0&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
+                                            <span class="glyphicon glyphicon-fast-backward"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page-1}&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
+                                            <span class="glyphicon glyphicon-backward"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="pager_detail text-center" readonly value="${page+1}/${Totalpage}"/>
+                                </li>
+                                <li>
+                                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page+1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
+                                            <span class="glyphicon glyphicon-forward"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${Totalpage-1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
+                                            <span class="glyphicon glyphicon-fast-forward"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                            <h3>
+                            <spring:message code="action.rechercher" />
+                        </h3>
+                        <hr/>
+                    </div>
+                </c:if>
+
+                <c:if test="${entrees.size() ne 0}">
+                    <c:forEach items="${entrees}" var="entree">
+                        <tr>
+                            <td>${entree.numero}</td>
+                            <td>${entree.dateEntree}</td>
+                            <td>${entree.categorie.intitule}</td>
+                            <td>${entree.fournisseur.nom}</td>
+                            <td>${entree.user.user.nom}</td>
+                            <td>
+                                <spring:url value="/entree/${entree.id}/edit" htmlEscape="true" var="entree_edit" />
+                                <a href="${entree_edit}" class="btn btn-primary btn-warning">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    <spring:message code="action.modifier" />
+                                </a>
+                                &nbsp; &nbsp;
+                                <spring:url value="/entree/${entree.id}/show" htmlEscape="true" var="entree_show" />
+                                <a href="${entree_show}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-open"></span>
+                                    <spring:message code="action.detail" />
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                    </tbody>
+                    </table>
+
+                    <div>
+                        <spring:url value="/entree/new" var="entreeNew" htmlEscape="true" />
+                        <a href="${entreeNew}">
+                            <span class="glyphicon glyphicon-book"></span>
+                            <spring:message code="action.nouveau" />
+                        </a>
+
                     </div>
 
                     <div class="pull-right">
                         <ul class="pager">
 
-                            <li><a href="?query=${query}&page=0&size=${size}" class ="btn btn-sm disabled">
-                                    <span class="glyphicon glyphicon-fast-backward"></span>
-                                </a></li>
-                            <li><a href="?query=${query}&page=${page-1}&size=${size}"class ="btn btn-sm disabled">
-                                    <span class="glyphicon glyphicon-backward"></span>
-                                </a></li>
-                            <li><input type="text" class="pager_detail text-center" readonly value="0/0"/></li>
-                            <li><a href="?query=${query}&page=${page+1}&size=${size}" class ="btn btn-sm disabled">
-                                    <span class="glyphicon glyphicon-forward"></span>
-                                </a></li>
-                            <li><a href="?query=${query}&page=${Totalpage-1}&size=${size}" class ="btn btn-sm disabled">
-                                    <span class="glyphicon glyphicon-fast-forward"></span>
-                                </a></li>
-                        </ul>
+                            <li>
+                                <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=0&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
+                                        <span class="glyphicon glyphicon-fast-backward"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page-1}&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
+                                        <span class="glyphicon glyphicon-backward"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <input type="text" class="pager_detail text-center" readonly value="${page+1}/${Totalpage}"/>
+                            </li>
+                            <li>
+                                <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page+1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
+                                        <span class="glyphicon glyphicon-forward"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${Totalpage-1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
+                                        <span class="glyphicon glyphicon-fast-forward"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div>
+                        <h3>
+                        <spring:message code="action.rechercher" />
+                    </h3>
+                    <hr/>
+                </div>
+                <spring:url value="/entree/" var="entree_home"
+                            htmlEscape="true" />
 
-            </c:if>
+                <form:form method="get" commandName="entree" action="${entree_home}">
+                    <div class="form-group">
+                        <label for="categorie">
+                            <spring:message code="entree.categorie" />
+                        </label>
+                        <select id="categorie" name="querycategorie" class="form-control input-sm">
+                            <option value="">---</option>
+                            <c:forEach var="cat" items="${categories}">
 
-            <c:if test="${entrees.size() ne 0}">
-                <c:forEach items="${entrees}" var="entree">
-                    <tr>
-                        <td>${entree.numero}</td>
-                        <td>${entree.dateEntree}</td>
-                        <td>${entree.categorie.intitule}</td>
-                        <td>${entree.fournisseur.nom}</td>
-                        <td>${entree.user.user.nom}</td>
-                        <td>
-                            <spring:url value="/entree/${entree.id}/edit" htmlEscape="true" var="entree_edit" />
-                            <a href="${entree_edit}" class="btn btn-primary btn-warning">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                <spring:message code="action.modifier" />
-                            </a>
-                            &nbsp; &nbsp;
-                            <spring:url value="/entree/${entree.id}/show" htmlEscape="true" var="entree_show" />
-                            <a href="${entree_show}" class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-open"></span>
-                                <spring:message code="action.detail" />
-                            </a>
-                        </td>
-                    </tr>
-                </c:forEach>
-
-            </tbody>
-        </table>
-
-        <div>
-            <spring:url value="/entree/new" var="entreeNew" htmlEscape="true" />
-            <a href="${entreeNew}">
-                <span class="glyphicon glyphicon-book"></span>
-                <spring:message code="action.nouveau" />
-            </a>
-
-        </div>
-
-        <div class="pull-right">
-            <ul class="pager">
-
-                <li>
-                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=0&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
-                            <span class="glyphicon glyphicon-fast-backward"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page-1}&size=${size}" <c:if test="${page eq 0}">class ="btn btn-sm disabled"</c:if>>
-                            <span class="glyphicon glyphicon-backward"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <input type="text" class="pager_detail text-center" readonly value="${page+1}/${Totalpage}"/>
-                </li>
-                <li>
-                    <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${page+1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
-                            <span class="glyphicon glyphicon-forward"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?querycategorie=${entree.categorie.id}&querydateentree=${entree.dateEntree}&querydesignation=${querydesignation}&page=${Totalpage-1}&size=${size}" <c:if test="${page+1 eq Totalpage}">class ="btn btn-sm disabled"</c:if>>
-                            <span class="glyphicon glyphicon-fast-forward"></span>
-                        </a>
-                    </li>
-                </ul>
+                                <option value="${cat.key}"
+                                        <c:if test="${cat.key eq entree.categorie.id}">
+                                            selected
+                                        </c:if>
+                                        >
+                                    ${cat.value}
+                                </option>
+                            </c:forEach>
+                        </select>
+                        <input type="hidden" value="${size}" name="size"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateEntree">
+                            <spring:message code="entree.dateEntree" />
+                        </label>
+                        <input id="dateEntree" type="text" value="${entree.dateEntree}" class="form-control input-sm" name="querydateoperation"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">
+                            <spring:message code="fourniture.designation" />
+                        </label>
+                        <input id="designation" type="text" value="${querydesignation}" class="form-control input-sm" name="querydesignation"/>
+                    </div>
+                    <hr/>
+                    <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-search"></span> <spring:message code="action.rechercher"/>
+                    </button>
+                    <spring:url value="/entree/" htmlEscape="true" var="entree_home" />
+                    <a href="${entree_home}" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        <spring:message code="search.delete" />
+                    </a>
+                </form:form>
             </div>
-        </div>
+        </c:if>
     </div>
-    <div class="col-md-3">
-        <div>
-            <h3>
-            <spring:message code="action.rechercher" />
-        </h3>
-        <hr/>
-    </div>
-    <spring:url value="/entree/" var="entree_home"
-                htmlEscape="true" />
 
-    <form:form method="get" commandName="entree" action="${entree_home}">
-        <div class="form-group">
-            <label for="categorie">
-                <spring:message code="entree.categorie" />
-            </label>
-            <select id="categorie" name="querycategorie" class="form-control input-sm">
-                <option value="">---</option>
-                <c:forEach var="cat" items="${categories}">
-
-                    <option value="${cat.key}"
-                            <c:if test="${cat.key eq entree.categorie.id}">
-                                selected
-                            </c:if>
-                            >
-                        ${cat.value}
-                    </option>
-                </c:forEach>
-            </select>
-            <input type="hidden" value="${size}" name="size"/>
-        </div>
-        <div class="form-group">
-            <label for="dateEntree">
-                <spring:message code="entree.dateEntree" />
-            </label>
-            <input id="dateEntree" type="text" value="${entree.dateEntree}" class="form-control input-sm" name="querydateoperation"/>
-        </div>
-        <div class="form-group">
-            <label for="designation">
-                <spring:message code="fourniture.designation" />
-            </label>
-            <input id="designation" type="text" value="${querydesignation}" class="form-control input-sm" name="querydesignation"/>
-        </div>
-        <hr/>
-        <button class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-search"></span> <spring:message code="action.rechercher"/>
-        </button>
-        <spring:url value="/entree/" htmlEscape="true" var="entree_home" />
-        <a href="${entree_home}" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-refresh"></span>
-            <spring:message code="search.delete" />
-        </a>
-    </form:form>
-</div>
-</c:if>
-</div>
-
-<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-<script type="text/javascript">
-    $(function () {
-        $("#dateEntree").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: "dd/mm/yy",
-            showButtonPanel: false
-        }).datepicker("option", "showAnim", "clip");
-    });
-</script>
+    <script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#dateEntree").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                showButtonPanel: false
+            }).datepicker("option", "showAnim", "clip");
+        });
+    </script>
 </tiles:putAttribute>
 </tiles:insertDefinition>
 

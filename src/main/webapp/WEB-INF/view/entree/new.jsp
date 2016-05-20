@@ -52,9 +52,7 @@
                         <form:label for="categorie" path="">
                             <spring:message code="entree.categorie" />
                         </form:label>
-                        <form:select id="categorie" path="entree.categorie.id" cssClass="form-control" >
-                            <form:options items="${categories}"  />
-                        </form:select>
+                        <form:input readonly="true" enabled="false" id="date" path="entree.categorie.intitule" cssClass="form-control input-sm"/>
                         <form:errors path="entree.categorie.intitule" cssClass="text-danger" />
                         <c:if test="${not empty entreeForm.entree.ligneAuditId}">
                             <form:hidden id="ligneAuditId" path="entree.ligneAuditId"/>
