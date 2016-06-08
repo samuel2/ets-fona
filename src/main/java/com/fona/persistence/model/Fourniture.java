@@ -5,12 +5,16 @@
  */
 package com.fona.persistence.model;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 /**
@@ -36,6 +40,10 @@ public class Fourniture extends EntityObject
     @NumberFormat
     @Digits(fraction = 0, integer = Integer.MAX_VALUE, message = "{digits.message}")
     private int seuil;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date dateDePeremption;
 
     @NotNull(message = "{blank.message}")
     @NumberFormat
@@ -92,6 +100,16 @@ public class Fourniture extends EntityObject
     public void setSeuil(int seuil)
     {
         this.seuil = seuil;
+    }
+
+    public Date getDateDePeremption()
+    {
+        return dateDePeremption;
+    }
+
+    public void setDateDePeremption(Date dateDePeremption)
+    {
+        this.dateDePeremption = dateDePeremption;
     }
 
     public Categorie getCategorie()

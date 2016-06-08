@@ -7,6 +7,7 @@ package com.fona.persistence.dao;
 
 import com.fona.persistence.model.Categorie;
 import com.fona.persistence.model.Fourniture;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,13 +33,18 @@ public interface IFournitureDao extends JpaRepository<Fourniture, Long>, JpaSpec
     public List<Fourniture> findExisting();
 
     @Query("SELECT F FROM Fourniture F WHERE F.designation LIKE :designation"
-            + " and F.reference LIKE :reference")
+           + " and F.reference LIKE :reference")
     Page<Fourniture> findPaginated(@Param("designation") String designation,
-            @Param("reference") String reference, Pageable pageable);
+                                   @Param("reference") String reference, Pageable pageable);
 
     @Query("SELECT F FROM Fourniture F WHERE F.categorie.id = :categorieId "
-            + " AND F.designation LIKE :designation and F.reference LIKE :reference")
+           + " AND F.designation LIKE :designation and F.reference LIKE :reference AND F.dateDePeremption <= :dateDePeremption")
     Page<Fourniture> findPaginated(@Param("categorieId") Long Id,
-            @Param("designation") String designation, @Param("reference") String reference, Pageable pageable);
+                                   @Param("designation") String designation,
+                                   @Param("reference") String reference,
+                                   @Param("dateDePeremption") Date dateDePeremption, Pageable pageable);
+
+    @Query("SELECT f FROM Fourniture f WHERE f.dateDePeremption <= :dateDePeremption")
+    Page<Fourniture> findPaginated(@Param("dateDePeremption") Date dateDePeremption, Pageable pageable);
 
 }

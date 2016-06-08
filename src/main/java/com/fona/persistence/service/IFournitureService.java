@@ -8,6 +8,7 @@ package com.fona.persistence.service;
 import com.fona.persistence.IOperations;
 import com.fona.persistence.model.Categorie;
 import com.fona.persistence.model.Fourniture;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ public interface IFournitureService extends IOperations<Fourniture>
 
     public List<Fourniture> findExisting();
 
-    Page<Fourniture> findPaginated(Long Id, String designation, String reference,
-            int nombrePage, Integer size);
+    Page<Fourniture> findPaginated(Long Id, String designation, String reference, Date dateDePeremption, int nombrePage, Integer size);
+
+    Page<Fourniture> findPaginated(Date dateDePeremption, int page, Integer size);
 }

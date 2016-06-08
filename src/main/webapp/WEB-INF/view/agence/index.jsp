@@ -41,7 +41,7 @@
                             <th> <span class="btn"> <spring:message code="action.titre" /> </span> </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                         <spring:url value="/agence/new" var="agenceNew" />
                         <spring:url value="/" var="accueil" />
 

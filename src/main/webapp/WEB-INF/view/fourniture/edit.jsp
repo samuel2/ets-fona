@@ -50,6 +50,15 @@
                         </div>
                         <div class="row">
                             <div class="form-group">
+                                <form:label path="" for="date">
+                                    <spring:message code="fourniture.dateDePeremption" />
+                                </form:label>
+                                <form:input id="date" path="dateDePeremption" cssClass="form-control" />
+                                <form:errors path="dateDePeremption" cssClass="text-danger" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
                                 <form:label path="" for="cat">
                                     <spring:message code="fourniture.categorie" />
                                 </form:label>

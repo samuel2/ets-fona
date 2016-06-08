@@ -11,6 +11,7 @@ import com.fona.persistence.model.Categorie;
 import com.fona.persistence.model.Fourniture;
 import com.fona.persistence.service.IFournitureService;
 import com.fona.persistence.service.common.AbstractService;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,22 +89,31 @@ public class FournitureService extends AbstractService<Fourniture> implements IF
     {
         final List<Fourniture> fournitures = iFournitureDao.findByCategorieName('%' + categorie + '%');
         Map<Long, String> listMap = new HashMap<>();
-        for (Fourniture fourniture : fournitures) {
+        for(Fourniture fourniture : fournitures)
+        {
             listMap.put(fourniture.getId(),
-                    fourniture.getDesignation());
+                        fourniture.getDesignation());
         }
         return listMap;
     }
 
     @Override
-    public Page<Fourniture> findPaginated(Long Id, String designation, String reference, int nombrePage, Integer size)
+    public Page<Fourniture> findPaginated(Long Id, String designation, String reference, Date dateDePeremption, int nombrePage, Integer size)
     {
-        if (Id == -1) {
+        if(Id == -1)
+        {
             return iFournitureDao.findPaginated('%' + designation + '%', '%' + reference + '%', new PageRequest(nombrePage, size));
         }
-        else {
-            return iFournitureDao.findPaginated(Id, '%' + designation + '%', '%' + reference + '%', new PageRequest(nombrePage, size));
+        else
+        {
+            return iFournitureDao.findPaginated(Id, '%' + designation + '%', '%' + reference + '%', dateDePeremption, new PageRequest(nombrePage, size));
         }
 
+    }
+
+    @Override
+    public Page<Fourniture> findPaginated(Date dateDePeremption, int page, Integer size)
+    {
+        return iFournitureDao.findPaginated(dateDePeremption, new PageRequest(page, size));
     }
 }
