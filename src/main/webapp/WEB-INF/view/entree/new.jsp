@@ -12,32 +12,23 @@
 
 <tiles:insertDefinition name="layout">
     <tiles:putAttribute name="body">
-        <div class="row">
+        <div class="row" style="margin-top: -50px">
             <div class="col-md-12">
-                <h4>
+                <h5>
                     <c:choose>
                         <c:when test="${not empty entreeForm.entree.ligneAuditId}">
                             Audit : ${audit.numero} - Equilibrage des stocks : ${fourniture.designation}
                         </c:when>
-                        <c:otherwise>
-                            <spring:message code="entree.new" />
-                            <br />
-                        </c:otherwise>
                     </c:choose>
-               	</h4>
+               	</h5>
                 <hr/>
             </div>
         </div>
 
-        <spring:url
-            value="/entree/create"
-            var="entree_create"
-            htmlEscape="true" />
-
+        <spring:url value="/entree/create" var="entree_create" htmlEscape="true" />
 
         <form:form method="post" commandName="entreeForm" action="${entree_create}?${_csrf.parameterName}=${_csrf.token}">
             <div class="row">
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <form:label for="date" path="">
@@ -61,7 +52,31 @@
                     </div>
                 </div>
             </div>
-            <hr/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <form:label for="info" path="">
+                            <spring:message code="fournisseur.infos" />
+                        </form:label>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <form:label path="" for="code">
+                            <spring:message code="fournisseur.code" />
+                        </form:label>
+                        <form:input id="code" path="code" cssClass="form-control" />
+                        <form:errors path="code" cssClass="text-danger" />
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
 
             <div class="row">
                 <div class="col-md-12">

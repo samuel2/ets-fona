@@ -70,24 +70,52 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
                                         <li>
-                                            <spring:url value="/entree/bureau/new" var="newMatBureau" htmlEscape="true" />
-                                            <a href="${newMatBureau}">
-                                                <span class="glyphicon glyphicon-book"></span>
-                                                <spring:message code="matBureau.new" />
+                                            <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                            <a href="${newMatBiochimie}">
+                                                <span class="glyphicon glyphicon-compressed"></span>
+                                                <spring:message code="matBiochimie.new" />
                                             </a>
                                         </li>
                                         <li>
-                                            <spring:url value="/entree/informatique/new" var="newMatInfo" htmlEscape="true" />
-                                            <a href="${newMatInfo}">
-                                                <span class="glyphicon glyphicon-camera"></span>
-                                                <spring:message code="matInfo.new" />
+                                            <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
+                                            <a href="${newMatImmunologie}">
+                                                <span class="glyphicon glyphicon-cog"></span>
+                                                <spring:message code="matImmunologie.new" />
                                             </a>
                                         </li>
                                         <li>
-                                            <spring:url value="/entree/publicitaire/new" var="newMatPub" htmlEscape="true" />
-                                            <a href="${newMatPub}" >
+                                            <spring:url value="/entree/bandelette/new" var="newMatBandelette" htmlEscape="true" />
+                                            <a href="${newMatBandelette}" >
+                                                <span class="glyphicon glyphicon-credit-card"></span>
+                                                <spring:message code="matBandelette.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/appareilles/new" var="newMatAppareille" htmlEscape="true" />
+                                            <a href="${newMatAppareille}" >
+                                                <span class="glyphicon glyphicon-tasks"></span>
+                                                <spring:message code="matAppareille.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/consommables-speciaux/new" var="newMatConsommables" htmlEscape="true" />
+                                            <a href="${newMatConsommables}" >
+                                                <span class="glyphicon glyphicon-folder-open"></span>
+                                                <spring:message code="matConsommables.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/colorant/new" var="newMatColorant" htmlEscape="true" />
+                                            <a href="${newMatColorant}" >
+                                                <span class="glyphicon glyphicon-flash"></span>
+                                                <spring:message code="matColorant.new" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
+                                            <a href="${newMatLatex}" >
                                                 <span class="glyphicon glyphicon-sound-stereo"></span>
-                                                <spring:message code="matPub.new" />
+                                                <spring:message code="matLatex.new" />
                                             </a>
                                         </li>
                                     </ul>
@@ -151,24 +179,52 @@
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
                                 <li>
-                                    <spring:url value="/entree/bureau/new" var="newMatBureau" htmlEscape="true" />
-                                    <a href="${newMatBureau}">
+                                    <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                    <a href="${newMatBiochimie}">
                                         <span class="glyphicon glyphicon-book"></span>
-                                        <spring:message code="matBureau.new" />
+                                        <spring:message code="matBiochimie.new" />
                                     </a>
                                 </li>
                                 <li>
-                                    <spring:url value="/entree/informatique/new" var="newMatInfo" htmlEscape="true" />
-                                    <a href="${newMatInfo}">
+                                    <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
+                                    <a href="${newMatImmunologie}">
                                         <span class="glyphicon glyphicon-camera"></span>
-                                        <spring:message code="matInfo.new" />
+                                        <spring:message code="matImmunologie.new" />
                                     </a>
                                 </li>
                                 <li>
-                                    <spring:url value="/entree/publicitaire/new" var="newMatPub" htmlEscape="true" />
-                                    <a href="${newMatPub}" >
+                                    <spring:url value="/entree/bandelette/new" var="newMatBandelette" htmlEscape="true" />
+                                    <a href="${newMatBandelette}" >
                                         <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matPub.new" />
+                                        <spring:message code="matBandelette.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/appareilles/new" var="newMatAppareille" htmlEscape="true" />
+                                    <a href="${newMatAppareille}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matAppareille.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/consommables-speciaux/new" var="newMatConsommables" htmlEscape="true" />
+                                    <a href="${newMatConsommables}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matConsommables.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/colorant/new" var="newMatColorant" htmlEscape="true" />
+                                    <a href="${newMatColorant}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matColorant.new" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
+                                    <a href="${newMatLatex}" >
+                                        <span class="glyphicon glyphicon-sound-stereo"></span>
+                                        <spring:message code="matLatex.new" />
                                     </a>
                                 </li>
                             </ul>

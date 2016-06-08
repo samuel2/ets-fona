@@ -8,13 +8,8 @@
 <tiles:insertDefinition name="layout">
     <tiles:putAttribute name="body">
 
-        <div class="row">
-            <div class="col-md-offset-2">
-                <h3>
-                    <spring:message code="client.new" />
-                </h3>
-                <hr/>
-            </div>
+        <div class="row" style="margin-top: -50px">
+
             <spring:url value="/client/create" var="client_create" htmlEscape="true" />
             <spring:url value="/client/" var="clients" />
 

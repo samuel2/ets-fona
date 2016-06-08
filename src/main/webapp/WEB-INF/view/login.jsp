@@ -1,4 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html lang="en-IN">
     <head>
         <meta charset="utf-8">
@@ -76,6 +82,7 @@
                         </div>
                         <footer class="panel-footer">
                             <div class="row">
+                                <spring:url value="user/new" var="userNew" />
                                 <button type="submit" class="btn btn-primary btn-block text-center">
                                     <b>
                                         <span class="glyphicon glyphicon-log-in">
@@ -87,10 +94,16 @@
                                 <button type="reset" class="btn btn-warning btn-block text-center">
                                     <b>
                                         <span class="glyphicon glyphicon-refresh">
-                                            Réinitialiser
+                                            RÃ©initialiser
                                         </span>
                                     </b>
-                                </button>
+                                </button> &nbsp;&nbsp;
+                                <br/>
+                                <a href="${userNew}">
+                                    <span class="glyphicon glyphicon-log-in">
+                                        S'enregistrer
+                                    </span>
+                                </a>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </footer>
