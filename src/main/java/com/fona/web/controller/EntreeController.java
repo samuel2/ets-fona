@@ -156,7 +156,7 @@ public class EntreeController {
         model.addAttribute("entreeForm", entreeForm);
         model.addAttribute("fournisseur", fournisseur);
         model.addAttribute("fournitures", fournitures);
-        return "entree/fournisseur";
+        return "entree/new";
     }
 
     @RequestMapping(method = RequestMethod.GET)

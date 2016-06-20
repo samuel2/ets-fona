@@ -71,54 +71,6 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
                                         <li>
-<<<<<<< HEAD
-                                            <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
-                                            <a href="${newMatBiochimie}">
-                                                <span class="glyphicon glyphicon-compressed"></span>
-                                                <spring:message code="matBiochimie.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
-                                            <a href="${newMatImmunologie}">
-                                                <span class="glyphicon glyphicon-cog"></span>
-                                                <spring:message code="matImmunologie.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/bandelette/new" var="newMatBandelette" htmlEscape="true" />
-                                            <a href="${newMatBandelette}" >
-                                                <span class="glyphicon glyphicon-credit-card"></span>
-                                                <spring:message code="matBandelette.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/appareilles/new" var="newMatAppareille" htmlEscape="true" />
-                                            <a href="${newMatAppareille}" >
-                                                <span class="glyphicon glyphicon-tasks"></span>
-                                                <spring:message code="matAppareille.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/consommables-speciaux/new" var="newMatConsommables" htmlEscape="true" />
-                                            <a href="${newMatConsommables}" >
-                                                <span class="glyphicon glyphicon-folder-open"></span>
-                                                <spring:message code="matConsommables.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/colorant/new" var="newMatColorant" htmlEscape="true" />
-                                            <a href="${newMatColorant}" >
-                                                <span class="glyphicon glyphicon-flash"></span>
-                                                <spring:message code="matColorant.new" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
-                                            <a href="${newMatLatex}" >
-                                                <span class="glyphicon glyphicon-sound-stereo"></span>
-                                                <spring:message code="matLatex.new" />
-=======
                                             <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
                                             <a href="${newMatLatex}">
                                                 <span class="glyphicon glyphicon-camera"></span>
@@ -126,7 +78,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <spring:url value="/fournisseur/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                            <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
                                             <a href="${newMatBiochimie}">
                                                 <span class="glyphicon glyphicon-book"></span>
                                                 <spring:message code="matBiochimie.new" />
@@ -165,7 +117,6 @@
                                             <a href="${newMatTestDiagnostique}" >
                                                 <span class="glyphicon glyphicon-sound-stereo"></span>
                                                 <spring:message code="matTestDiagnostique.new" />
->>>>>>> 4b787c28176af57e5ce3c719dc2c0b07f295ba70
                                             </a>
                                         </li>
                                     </ul>
@@ -229,54 +180,6 @@
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenus">
                                 <li>
-<<<<<<< HEAD
-                                    <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
-                                    <a href="${newMatBiochimie}">
-                                        <span class="glyphicon glyphicon-book"></span>
-                                        <spring:message code="matBiochimie.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/immunologie/new" var="newMatImmunologie" htmlEscape="true" />
-                                    <a href="${newMatImmunologie}">
-                                        <span class="glyphicon glyphicon-camera"></span>
-                                        <spring:message code="matImmunologie.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/bandelette/new" var="newMatBandelette" htmlEscape="true" />
-                                    <a href="${newMatBandelette}" >
-                                        <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matBandelette.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/appareilles/new" var="newMatAppareille" htmlEscape="true" />
-                                    <a href="${newMatAppareille}" >
-                                        <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matAppareille.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/consommables-speciaux/new" var="newMatConsommables" htmlEscape="true" />
-                                    <a href="${newMatConsommables}" >
-                                        <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matConsommables.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/colorant/new" var="newMatColorant" htmlEscape="true" />
-                                    <a href="${newMatColorant}" >
-                                        <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matColorant.new" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <spring:url value="/entree/latex/new" var="newMatLatex" htmlEscape="true" />
-                                    <a href="${newMatLatex}" >
-                                        <span class="glyphicon glyphicon-sound-stereo"></span>
-                                        <spring:message code="matLatex.new" />
-=======
                                     <spring:url value="/entree/partial/newFournisseur" var="newMatLatex" htmlEscape="true" />
                                     <a href="${newMatLatex}">
                                         <span class="glyphicon glyphicon-camera"></span>
@@ -284,7 +187,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <spring:url value="/fournisseur/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
+                                    <spring:url value="/entree/biochimie/new" var="newMatBiochimie" htmlEscape="true" />
                                     <a href="${newMatBiochimie}">
                                         <span class="glyphicon glyphicon-book"></span>
                                         <spring:message code="matBiochimie.new" />
@@ -323,7 +226,6 @@
                                     <a href="${newMatTestDiagnostique}" >
                                         <span class="glyphicon glyphicon-sound-stereo"></span>
                                         <spring:message code="matTestDiagnostique.new" />
->>>>>>> 4b787c28176af57e5ce3c719dc2c0b07f295ba70
                                     </a>
                                 </li>
                             </ul>
